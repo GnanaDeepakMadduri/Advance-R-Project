@@ -1,0 +1,713 @@
+---
+title: "ANALYZING SALES AND PREDICTING FRAUD AND LATE DELIVERY RISKS"
+author: "Sree Meghana Reddy Kandi, Modhaka Jampana, Deepak Madduri"
+date: "2023-04-14"
+output: html_document
+---
+
+
+## INTRODUCTION
+
+In today's world, e-commerce entities serve as catalysts for economic growth by augmenting productivity, fostering innovation, and enhancing the overall shopping experience. The act of purchasing goods in large quantities online has become ubiquitous. As customers assume a central position in the company's priorities, their expectations regarding product quality, shipping, delivery times, and other related aspects have amplified. The concept of online shopping has transformed into a customer centric experience. Due to intense competition and a rapidly evolving market, companies that do not adapt promptly face the risk of becoming obsolete. Therefore, the primary objective of this project is to comprehend the impact of various factors such as location, shipping mode, distance, etc., on delivery status. A thorough analysis of this data will aid in minimizing the likelihood of late deliveries.
+
+Fraud can occur at any point in the supply chain, from the initial order placement to the final delivery of goods. Fraudulent activities such as false orders, theft, and counterfeit products can negatively impact the company's reputation, financial health, and customer trust. Therefore, it is crucial for DataCo to have an effective fraud detection system in place to minimize the risks associated with fraudulent activities. The purpose of this document is to provide the methods used to detect fraud, and the procedures in place to investigate and respond to fraudulent activities.
+
+
+## MOTIVATION AND OVERVIEW
+
+The supply chain industry holds a significant position in determining the overall economic health of the world. The onset of the pandemic in late 2019 resulted in businesses being left with an abundance of unsold goods, leading to a temporary surge in inventory-to-sales ratios before liquidation took place. Although the economy has made a significant recovery and demand has increased, businesses have not been able to restore their inventories to pre-pandemic levels, causing a decrease in inventory-to-sales ratios, leading to an inflation of prices for products and services. These supply chain disruptions extend beyond hardware or manufacturing shortages, as we have witnessed shortages in various household items, including common grocery items. Given the massive amount of data available from point-of-sale to online transactions, an advanced approach to analyzing and predicting the future state of supply chain operations would be beneficial to both businesses and customers. Boosting revenue is one of the key factors that can curb inflation, which is currently a global issue. Thus, when business revenues increase, it leads to an increase in employment, ultimately raising the Nation's GDP.
+
+
+## RELATED WORK
+
+One area of interest is the application of machine learning and predictive analytics to supply chain management. The use of these technologies can assist in detecting potential fraud, identifying inefficiencies, and forecasting demand accurately. Recent studies, such as "Predictive Analytics in Supply Chain Management: A Review" by Chen et al., provide an overview of predictive analytics techniques and their applications in supply chain management.
+
+Additionally, the topic of supply chain resilience has gained attention in recent years, especially in the face of the COVID-19 pandemic. Understanding how to build and maintain a resilient supply chain can help mitigate risks and disruptions. Research such as "Supply Chain Resilience: A Conceptual Framework and Future Research Agenda" by Pettit et al., provides insights into the concept of supply chain resilience and potential strategies for building resilient supply chains.
+
+
+## INITIAL RESEARCH IDEAS
+
+INITIAL QUESTIONS - 
+
+CATEGORY - 1
+LATE DELIVERIES
+
+Which department has the fewest instances of late deliveries?
+Which shipping mode has higher accuracy in terms of timely deliveries?
+Which location experiences the lowest number of late deliveries?
+
+
+CATEGORY - 2
+SUSPECTED FRAUD
+
+What is the distribution of order statuses in terms of percentages?
+What is the proportion of valid and fraudulent transactions?
+
+
+END STAGE INVESTIGATIONS - 
+
+CATEGORY - 1
+SALES
+
+What is the customer segment with the highest sales volume?
+What products are the top sellers in terms of sales?
+What are the top-performing countries in terms of sales, ranked by revenue?
+Who are top 20 final customers categorized by profit of orders?
+
+
+CATEGORY - 2
+LATE DELIVERIES
+
+Which department has the fewest instances of late deliveries?
+Which shipping mode has higher accuracy in terms of timely deliveries?
+What is the distribution of low-risk and high-risk deliveries in different regions?
+Which location experiences the lowest number of late deliveries?
+Which cities experience a higher incidence of delayed deliveries?
+
+
+CATEGORY - 3
+SUSPECTED FRAUD
+
+What is the distribution of order statuses in terms of percentages?
+What is the proportion of valid and fraudulent transactions?
+
+
+## DATA
+
+The Dataco Supply Chain data comprises a rich collection of features that provide a comprehensive view of the supply chain operations of the company. The dataset includes 53 features that cover various aspects of customers, orders, products, and locations.
+
+Some of the key features of the dataset include Delivery status, late delivery risk, category name, order country, order city, order date, shipping mode, shipping date, order status, product name, customer details, product price, and product status. The Delivery status feature indicates whether the delivery was successful or not. The late delivery risk feature helps to identify the likelihood of a late delivery. The category name feature provides information on the type of product ordered, while the order country and order city features provide information on the geographic location of the order. The order date feature captures the date the order was placed, while the shipping mode and shipping date features capture information on the mode and date of shipping. The order status feature indicates whether the order has been fulfilled or not. The product name feature captures the name of the product ordered, while the customer details feature provides information on the customer who placed the order. The product price feature captures the price of the product, while the product status feature indicates whether the product is available or not.
+
+To analyze the Dataco Supply Chain data, the data is imported and wrangled to make it suitable for analysis. The data import process involves bringing the data into a software environment(RStudio). The wrangling process involves cleaning and transforming the data to make it suitable for analysis. This involve converting categorical data to numerical data to ensure consistency across different features.
+
+Once the data has been imported and wrangled, various data analysis techniques is applied to gain insights into the supply chain operations. These may include descriptive statistics, data visualization, and machine learning techniques such as regression analysis and classification analysis. The insights gained from analyzing the data is used to optimize supply chain operations, detect potential fraud, and improve the overall efficiency of the company's supply chain operations.
+
+
+## EXPLORATORY DATA ANALYSIS
+
+During the exploratory data analysis phase, a range of visualization techniques were employed to obtain insights from the data. Continuous variables were visualized using histograms and density plots, while categorical variables were visualized using bar plots and pie charts.
+
+In the preliminary analysis for fraud detection, it became apparent that the target variable, "y_fraud," was imbalanced, with the majority of observations classified as non-fraudulent. As a result, a stratified sampling method was utilized to divide the data into training and testing sets.
+
+Two statistical methods were considered for modeling: logistic regression and linear discriminant analysis (LDA). The logistic regression model was refined by removing variables with high collinearity with other variables.
+
+To predict the Late_delivery_risk variable, several statistical methods were explored, including logistic regression, random forest, Naive Bayes, and decision tree models. These models were chosen due to their common use in classification problems and their strong performance in similar contexts.
+
+The predictive models were evaluated using a confusion matrix to determine the number of accurate and inaccurate predictions, as well as metrics such as accuracy, precision, recall, and F-measure.
+
+
+## DATA ANALYTICS
+
+In this section, a comparison is made between the different models used to predict late deliveries and fraudulent activities to identify the best fitting model.
+
+Four classification models were used to predict the factors affecting late deliveries. Initially, logistic regression, naive Bayes, and decision tree models were utilized, yielding accuracy scores of approximately 71%. However, the random forest model resulted in an accuracy score of approximately 40%, indicating that it was not a good fit for the dataset. Overall, the results demonstrated that the supply chain dataset could be accurately classified using these methods for late deliveries.
+
+The decision to use logistic regression for fraud prediction was based on the nature of the problem, as a binary classification model was required to predict whether a transaction was fraudulent or not. Logistic regression is a commonly used and powerful method for binary classification, making it a suitable choice for this problem. The decision to use LDA was also based on the nature of the problem, as LDA is a classification method that works well when the classes have a linear boundary and assumes that the predictor variables are normally distributed. These assumptions were deemed appropriate for the supply chain dataset. The conclusions were reached by carefully analyzing the visualizations and statistical results. Logistic regression was found to have an accuracy of around 97%, similar to LDA which had an accuracy of 96%.
+
+After evaluating the performance of the different models, it was concluded that logistic regression, naive Bayes, and decision tree models were similarly accurate in predicting late deliveries. However, the random forest model was found to perform poorly and was not as accurate. Similarly, logistic regression and LDA were the most accurate in predicting fraudulent activities, while support vector machine and decision tree models performed poorly and were not as accurate.
+
+
+## NARRATIVE AND SUMMARY
+
+The data available for analysis is highly valuable and can be used to boost revenue and improve customer satisfaction. It can also be used to identify factors affecting delivery times and prevent fraudulent activities, thus minimizing financial losses and reputational damage.
+
+To justify the accuracy of the predictions made using the data, different models were evaluated using metrics like accuracy, precision, recall, and F-measure. The logistic regression and LDA models used for fraud prediction had high accuracy and F-measure, indicating that they were able to correctly predict most fraudulent and non-fraudulent cases. Similarly, for Late_delivery_risk prediction, logistic regression, random forest, Naive Bayes, and decision tree models were evaluated, and the model with the highest performance was selected as the final model. Logistic regression, Naive Bayes, and decision tree performed relatively well.
+
+However, it is important to acknowledge that the analysis has certain limitations, such as possible errors in data collection or incorrect data. Additionally, while the data provides insights into past performance, it may not accurately predict future performance. Therefore, it is crucial to use the data in conjunction with other sources of information and approach the analysis with a critical and cautious perspective. 
+
+
+
+## DATA WRANGLING
+
+```{r}
+# install.packages("ggmap")
+# install.packages("tmaptools")
+# install.packages("RCurl")
+# install.packages("jsonlite")
+# install.packages("leaflet")
+# install.packages("tidyverse")
+# install.packages("RColorBrewer")
+# install.packages("ggthemes")
+# install.packages("lubridate")
+# install.packages("geosphere")
+# install.packages("splitTools")
+# install.packages("ROCR")
+# install.packages("plotROC")
+# install.packages("DataExplorer")
+# install.packages("WVPlots")
+# install.packages("dplyr")
+# install.packages("ggplot2")
+# install.packages("caret")
+# install.packages("geosphere")
+# install.packages("readr")
+# install.packages("glmnet")
+# install.packages("plotmo")
+# install.packages("stringr")
+# install.packages("leaflet.extras")
+# install.packages("randomForest")
+# install.packages("e1071")
+# install.packages("rpart")
+# install.packages("shiny")
+# install.packages("plotly")
+# install.packages("tensorflow")
+# install.packages("keras")
+# install.packages("MASS")
+
+
+library(ggmap)                  # Load ggmap package for visualizations using Google Maps
+library(tmaptools)              # Load tmaptools package for working with thematic maps
+library(RCurl)                 # Load RCurl package for making HTTP requests
+library(jsonlite)              # Load jsonlite package for working with JSON data
+library(leaflet)               # Load leaflet package for interactive maps
+library(tidyverse)             # Load tidyverse package for data manipulation and visualization
+library(RColorBrewer)          # Load RColorBrewer package for color palettes
+library(ggthemes)             # Load ggthemes package for additional themes for ggplot2
+library(lubridate)            # Load lubridate package for working with dates and times
+library(geosphere)            # Load geosphere package for geospatial calculations
+library(splitTools)           # Load splitTools package for splitting data into training and testing sets
+library(ROCR)                 # Load ROCR package for visualizing performance of classification models
+library(plotROC)              # Load plotROC package for plotting ROC curves
+library(DataExplorer)         # Load DataExplorer package for data exploration
+library(WVPlots)             # Load WVPlots package for visualizing missing data
+library(dplyr)                # Load dplyr package for data manipulation
+library(ggplot2)              # Load ggplot2 package for data visualization
+library(caret)                # Load caret package for machine learning tools
+library(geosphere)           # Load geosphere package for geospatial calculations
+library(readr)               # Load readr package for reading CSV files
+library(glmnet)              # Load glmnet package for fitting elastic net models
+library(plotmo)              # Load plotmo package for visualizing partial dependence plots
+library(stringr)            # Load stringr package for replacing special characters of country and city names
+library(leaflet.extras)         # Load leaflet.extras package for creating interactive maps
+library(randomForest)           # Load randomForest package for classification and regression models.
+library(e1071)                  # Load e1071 package for support vector machines (SVMs)
+library(rpart)                  # Load rpart package for building decision trees
+library(shiny)                  # Load shiny package for creating interactive web applications.
+library(plotly)                 # Load plotly package for creating interactive plots and charts
+library(tensorflow)             # Load tensorflow package for building and training machine learning models
+library(keras)                  # Load keras package for building and training neural networks.
+library(MASS)                   # Load Mass package for mathematical statistics.
+
+
+supply_chain <-
+  read.csv("data/DataCoSupplyChainDataset.csv")  # Read CSV file into a data frame named supply_chain
+
+country <- unique(supply_chain$Order.Country)
+#country
+
+# Convert character encoding to ASCII
+country_ascii <- iconv(country, from = "UTF-8", to = "ASCII//TRANSLIT")
+
+# Remove non-alphanumeric characters
+country_clean <- gsub("[^[:alnum:][:space:]]", "", country_ascii)
+
+# Remove leading/trailing whitespace
+country_clean <- trimws(country_clean)
+
+# Get unique country names
+unique_country <- unique(country_clean)
+#unique_country
+
+# create a vector of unique country values
+countries <- unique(supply_chain$Order.Country)
+
+# loop over each unique country value and replace with the corresponding translated value
+for (country in countries) {
+  index <- supply_chain$Order.Country == country
+  if (anyNA(index)) {
+    next  # skip iteration if there are missing values
+  }
+  supply_chain$Order.Country[index] <- str_replace(supply_chain$Order.Country[index], country, unique_country[country == countries])
+}
+
+#View(supply_chain)
+
+country <- unique(supply_chain$Customer.Country)
+
+# Convert character encoding to ASCII
+country_ascii <- iconv(country, from = "UTF-8", to = "ASCII//TRANSLIT")
+
+# Remove non-alphanumeric characters
+country_clean <- gsub("[^[:alnum:][:space:]]", "", country_ascii)
+
+# Remove leading/trailing whitespace
+country_clean <- trimws(country_clean)
+
+# Get unique country names
+unique_country <- unique(country_clean)
+
+# create a vector of unique country values
+countries <- unique(supply_chain$Customer.Country)
+
+# loop over each unique country value and replace with the corresponding translated value
+for (country in countries) {
+  index <- supply_chain$Customer.Country == country
+  supply_chain$Customer.Country[index] <- str_replace(supply_chain$Customer.Country[index], country, unique_country[country == countries])
+}
+
+
+# Get unique customer city names
+customer_city <- unique(supply_chain$Customer.City)
+
+# Convert character encoding to ASCII
+customer_city_ascii <- iconv(customer_city, from = "UTF-8", to = "ASCII//TRANSLIT")
+
+# Remove non-alphanumeric characters
+customer_city_clean <- gsub("[^[:alnum:][:space:]]", "", customer_city_ascii)
+
+# Remove leading/trailing whitespace
+customer_city_clean <- trimws(customer_city_clean)
+
+# Get unique customer city names
+unique_customer_city <- unique(customer_city_clean)
+
+# Loop over each unique customer city value and replace with the corresponding translated value
+for (city in unique_customer_city) {
+  index <- supply_chain$Customer.City == city
+  supply_chain$Customer.City[index] <- str_replace(supply_chain$Customer.City[index], city, unique_customer_city[city == unique_customer_city])
+}
+
+# Get unique city names
+city <- unique(supply_chain$Order.City)
+#city
+
+# Convert character encoding to ASCII
+city_ascii <- iconv(city, from = "UTF-8", to = "ASCII//TRANSLIT")
+
+# Remove non-alphanumeric characters
+city_clean <- gsub("[^[:alnum:][:space:]]", "", city_ascii)
+
+# Remove leading/trailing whitespace
+city_clean <- trimws(city_clean)
+
+# Get unique city names
+unique_city <- unique(city_clean)
+#unique_city
+
+# create a vector of unique city values
+cities <- unique(supply_chain$Order.City)
+
+# loop over each unique city value and replace with the corresponding translated value
+for (city in cities) {
+  index <- supply_chain$Order.City == city
+  if (anyNA(index)) {
+    next  # skip iteration if there are missing values
+  }
+  supply_chain$Order.City[index] <- str_replace(supply_chain$Order.City[index], city, unique_city[city == cities])
+}
+
+x <- c("Rep�blica Dominicana", "Turqu�a", "M�xico", "Espa�a")
+
+# replace "México" with "mexico"
+y <- c("Dominican Republic", "Turkey", "Mexico", "Spain")
+
+# print the updated vector
+for (i in 1:length(x)) {
+  supply_chain$`Customer.Country` <-
+    supply_chain$`Customer.Country` %>% str_replace(x[i], y[i])
+  supply_chain$`Order.Country` <-
+    supply_chain$`Order.Country` %>% str_replace(x[i], y[i])
+}
+
+#View(supply_chain)
+
+```
+
+
+
+## EXPLORATORY DATA ANALYSIS - SALES
+
+```{r}
+library(plotly)
+
+# Define a function to create customer segment and plot the pie chart
+data_Customer_Segment <- supply_chain %>%
+    group_by(`Customer.Segment`) %>%
+    summarize(Number_of_Orders = n()) %>%
+    mutate(Percent_of_Orders = (Number_of_Orders / sum(Number_of_Orders)) * 100) %>%
+    arrange(desc(Percent_of_Orders))
+  
+  
+colors <- c("#F9A825", "#1E88E5", "#43A047")
+  plot_ly(data_Customer_Segment, labels = ~`Customer.Segment`, 
+          values = ~Percent_of_Orders, type = "pie",
+          textinfo = "label+percent",
+          marker = list(colors = colors)) %>%
+    layout(title = "Percentage of Orders by Customer Segment", width = 600, height = 600)
+
+# Define a function to get top products and plot the graph
+top3_products <- supply_chain %>% 
+    group_by(Product.Name) %>% 
+    summarise(Total_Sales = sum(Order.Item.Total)) %>% 
+    top_n(3, Total_Sales) %>% 
+    arrange(desc(Total_Sales))
+
+ggplotly(
+  ggplot(top3_products, aes(x = Product.Name, y = Total_Sales)) +
+    geom_bar(stat = "identity", fill = "plum", width = 0.8) +
+    labs(title = "Top 3 Products by Sales", x = "Product Name", y = "Total Sales") +
+    theme(axis.text.x = element_text(angle = 90, hjust = 0.2, size = 5))
+)
+  
+# Define a function to get top countries and plot the graph
+df_sales_country <- supply_chain %>%
+    group_by(`Order.Country`) %>%
+    summarize(`Sales of Orders` = sum(Sales)) %>%
+    arrange(desc(`Sales of Orders`)) %>%
+    head(10)
+  
+ggplotly(
+  ggplot(df_sales_country, aes(x = `Sales of Orders`, y = `Order.Country`, fill = `Sales of Orders`)) +
+    geom_col() +
+    scale_fill_gradient(low = "lightblue", high = "darkblue") +
+    labs(title = "Top 10 Countries by Sales", x = "Sales of Orders", y = "Country") +
+    theme(plot.title = element_text(hjust = 0.5), 
+          axis.text.x = element_text(angle = 45, hjust = 1))
+)
+
+# Define a function to get top customers and plot the graph
+supply_chain$Customer_ID_STR <- as.character(supply_chain$Customer.Id)
+data_customers_profit <- aggregate(supply_chain$Order.Profit.Per.Order, 
+                                     by = list(supply_chain$Customer_ID_STR), 
+                                     FUN = sum, 
+                                     na.rm = TRUE)
+  
+colnames(data_customers_profit) <- c("Customer_ID_STR", "Profit_of_Orders")
+
+top_customers <- head(data_customers_profit[order(-data_customers_profit$Profit_of_Orders), ], 20)
+
+plot_ly(top_customers, x = ~Profit_of_Orders, y = ~Customer_ID_STR, type = "bar", 
+        marker = list(color = ~Profit_of_Orders, colorscale = "Viridis"), 
+        hovertemplate = paste("Customer ID: %{y}<br>", "Profit: $%{x:.2f}")) %>%
+  layout(title = " Top 20 Most Profitable Customers")
+
+```
+
+
+
+## EXPLORATORY DATA ANALYSIS - LATE DELIVERIES
+
+```{r}
+# Group the data frame by Market and Late_delivery_risk
+supply_chain %>% group_by(Market, Late_delivery_risk) %>%
+  # Count the occurrences of each group
+  count() %>%
+  # Mutate the Late_delivery_risk column to replace 1 with 'Risk' and other values with 'No Risk'
+  mutate(Late_delivery_risk = ifelse(Late_delivery_risk == 1, 'Risk', 'No Risk')) %>%
+  # Group the data by Market
+  group_by(Market) %>%
+  # Calculate the percentage of occurrences in each group
+  mutate(percent = n / sum(n)) %>%
+  # Create a ggplot object with Market on the x-axis, percent on the y-axis, and Late_delivery_risk as fill color
+  ggplot(data = ., aes(x = Market, y = percent, fill = Late_delivery_risk)) +
+  # Create a bar chart with fill color based on Late_delivery_risk and position set to "fill"
+  geom_bar(position = "fill", stat = "identity")+
+  labs(title = "Proportion of Risk VS No-Risk deliveries across various Regions ") +
+    scale_fill_manual(values = c("#8FBC8F", "#FFA07A"))
+
+# Similar operations as above but grouped by Department.Name instead of Market
+supply_chain %>% group_by(Department.Name, Late_delivery_risk) %>%
+  count() %>%
+  mutate(Late_delivery_risk = ifelse(Late_delivery_risk == 1, 'Risk', 'No Risk')) %>%
+  group_by(Department.Name) %>%
+  mutate(percent = n / sum(n)) %>%
+  ggplot(data = .,
+         aes(x = Department.Name, y = percent, fill = Late_delivery_risk)) +
+  geom_bar(position = "fill", stat = "identity")+
+    ggtitle("Late Delivery Risk by Various Departments") +
+    theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
+    scale_fill_manual(values = c("lightseagreen", "hotpink3"))
+
+# Similar operations as above but grouped by Shipping.Mode instead of Market
+supply_chain %>% group_by(Shipping.Mode, Late_delivery_risk) %>%
+  count() %>%
+  mutate(Late_delivery_risk = ifelse(Late_delivery_risk == 1, 'Risk', 'No Risk')) %>%
+  group_by(Shipping.Mode) %>%
+  mutate(percent = n / sum(n)) %>%
+  ggplot(data = .,
+         aes(x = Shipping.Mode, y = percent, fill = Late_delivery_risk)) +
+    geom_bar(position = "fill", stat = "identity")+
+    labs(x = "Shipping Mode", y = "Percentage of Orders",
+         title = "Percentage of Late Deliveries by Shipping Modes") +
+    scale_fill_manual(values = c("#87CEFA", "#708090"))
+
+# Select only Latitude and Longitude columns from supply_chain and create a leaflet map
+supply_chain_map <- leaflet(width = 900) %>%
+  addTiles() %>%
+  addMarkers(data = supply_chain, 
+             clusterOptions = markerClusterOptions(), 
+             popup = "order location",
+             lat = ~Latitude,
+             lng = ~Longitude)
+
+# Create a subset of supply_chain for Late_delivery and Order.City where Order.Region is in specific regions
+Late_delivery <-
+  supply_chain$Late_delivery_risk[supply_chain$Order.Region == "West of USA" |
+                                    supply_chain$Order.Region == "US Center" |
+                                    supply_chain$Order.Region == "East of USA" |
+                                    supply_chain$Order.Region == "South of USA"]
+Order.City <- supply_chain$Order.City[supply_chain$Order.Region == "West of USA" |
+                                        supply_chain$Order.Region == "US Center" |
+                                        supply_chain$Order.Region == "East of USA" |
+                                        supply_chain$Order.Region == "South of USA"]
+
+# Create a data frame LD_supply_chain with Late_delivery and Order.City
+LD_supply_chain <- data.frame(Late_delivery, Order.City)
+
+# Count occurrences of Late_delivery and Order.City and name the count column as "count"
+LD_supply_chain <- LD_supply_chain %>%
+  count(Late_delivery, Order.City, name = "count")
+
+# Arrange LD_supply_chain by count column in descending order and keep top 20 rows
+LD_supply_chain <- LD_supply_chain %>% arrange(desc(count)) %>% slice(1:20)
+
+
+# Visualize late deliveries by city using ggplot
+ggplot(data = LD_supply_chain, aes(x = Order.City, y = count, fill = Late_delivery)) +
+  geom_bar(stat = 'identity') +
+  labs(x = "Order City", y = "Number of Orders", title = "Top 10 Deliveries in the US")
+
+```
+
+
+
+## PREDICTION - LATE DELIVERY RISK
+
+```{r}
+# Split the data into train and test sets
+set.seed(75)
+trainIndex <- createDataPartition(supply_chain$Late_delivery_risk, p = 0.8, 
+                                  list = FALSE, times = 1)
+supply_chain_train <- supply_chain[ trainIndex,]
+supply_chain_test  <- supply_chain[-trainIndex,]
+
+# Fit logistic regression model
+glm_model <- glm(Late_delivery_risk ~ Shipping.Mode, data = supply_chain_train, family = binomial())
+glm_model
+
+# Make predictions on test data
+supply_chain_test$predicted_risk <- predict(glm_model, newdata = supply_chain_test, type = "response")
+
+# Convert predicted probabilities to binary predictions
+supply_chain_test$predicted_late_delivery <- ifelse(supply_chain_test$predicted_risk >= 0.5, "Yes", "No")
+
+# Evaluate model accuracy on test data
+glm_predictions <- predict(glm_model, newdata = supply_chain_test, type = "response")
+glm_predictions <- ifelse(glm_predictions > 0.5, 1, 0)
+confusion_matrix <- table(glm_predictions, supply_chain_test$Late_delivery_risk)
+accuracy <- sum(diag(confusion_matrix)) / sum(confusion_matrix)
+accuracy
+precision <- confusion_matrix[2, 2] / sum(confusion_matrix[, 2])
+recall <- confusion_matrix[2, 2] / sum(confusion_matrix[2, ])
+f_measure <- 2 * precision * recall / (precision + recall)
+
+cat("Precision:", precision, "\n")
+cat("Recall:", recall, "\n")
+cat("F-measure:", f_measure, "\n")
+
+
+
+# Random Forest Model
+set.seed(210)
+library(randomForest)
+
+# Fit random forest model
+rf_model <- randomForest(Late_delivery_risk ~ Shipping.Mode, data = supply_chain_train)
+
+# Make predictions on test data
+supply_chain_test$predicted_late_delivery <- predict(rf_model, newdata = supply_chain_test, type = "class")
+
+# Evaluate model accuracy on test data
+confusion_matrix <- table(supply_chain_test$predicted_late_delivery, supply_chain_test$Late_delivery_risk)
+accuracy <- sum(diag(confusion_matrix)) / sum(confusion_matrix)
+accuracy
+precision <- confusion_matrix[2, 2] / sum(confusion_matrix[, 2])
+recall <- confusion_matrix[2, 2] / sum(confusion_matrix[2, ])
+f_measure <- 2 * precision * recall / (precision + recall)
+
+cat("Precision:", precision, "\n")
+cat("Recall:", recall, "\n")
+cat("F-measure:", f_measure, "\n")
+
+
+
+#Naive Bayes Model
+set.seed(210)
+library(e1071)
+
+#Fit Naive Bayes model
+nb_model <- naiveBayes(Late_delivery_risk ~ Shipping.Mode, data = supply_chain_train)
+
+#Make predictions on test data
+supply_chain_test$predicted_late_delivery <- predict(nb_model, newdata = supply_chain_test)
+
+#Evaluate model accuracy on test data
+confusion_matrix <- table(supply_chain_test$predicted_late_delivery, supply_chain_test$Late_delivery_risk)
+accuracy <- sum(diag(confusion_matrix)) / sum(confusion_matrix)
+accuracy
+precision <- confusion_matrix[2, 2] / sum(confusion_matrix[, 2])
+recall <- confusion_matrix[2, 2] / sum(confusion_matrix[2, ])
+f_measure <- 2 * precision * recall / (precision + recall)
+
+cat("Precision:", precision, "\n")
+cat("Recall:", recall, "\n")
+cat("F-measure:", f_measure, "\n")
+
+
+
+# subset of train and test data sets
+sub_supply_chain_train <- supply_chain_train[, c("Late_delivery_risk", "Shipping.Mode")]
+sub_supply_chain_test <- supply_chain_test[, c("Late_delivery_risk", "Shipping.Mode")]
+
+#Decision Tree Model
+set.seed(129)
+library(rpart)
+
+# Convert Late_delivery_risk to factor
+sub_supply_chain_train$Late_delivery_risk <- as.factor(sub_supply_chain_train$Late_delivery_risk)
+sub_supply_chain_test$Late_delivery_risk <- as.factor(sub_supply_chain_test$Late_delivery_risk)
+
+#Fit decision tree model
+tree_model <- rpart(Late_delivery_risk ~ Shipping.Mode, data = sub_supply_chain_train)
+
+#Make predictions on test data
+sub_supply_chain_test$predicted_late_delivery <- predict(tree_model, newdata = sub_supply_chain_test, type = "class")
+
+#Evaluate model accuracy on test data
+confusion_matrix <- table(sub_supply_chain_test$predicted_late_delivery, sub_supply_chain_test$Late_delivery_risk)
+accuracy <- sum(diag(confusion_matrix)) / sum(confusion_matrix)
+accuracy
+precision <- confusion_matrix[2, 2] / sum(confusion_matrix[, 2])
+recall <- confusion_matrix[2, 2] / sum(confusion_matrix[2, ])
+f_measure <- 2 * precision * recall / (precision + recall)
+
+cat("Precision:", precision, "\n")
+cat("Recall:", recall, "\n")
+cat("F-measure:", f_measure, "\n")
+
+```
+
+
+
+## EXPLORATORY DATA ANALYSIS - FRAUD DETECTION
+
+```{r}
+library(tidyverse)
+library(dplyr)
+library(plotly)
+library(ggplot2)
+
+unique(supply_chain$`Order.Status`) 
+supply_chain %>% count(`Order.Status`) %>% 
+  plot_ly(labels = ~ `Order.Status`, values = ~ n, type = "pie", hole = 0.4, marker = list(colors = rainbow(length(unique(supply_chain$`Order.Status`))))) %>% 
+  layout(title = "Order Status", showlegend = T, margin = list(l = 0, r = 0, b = 0, t = 50, pad = 0), legend = list(orientation = "h"))
+
+supply_chain_model <- supply_chain %>%
+  mutate(y_fraud = if_else(`Order.Status` == 'SUSPECTED_FRAUD', 1, 0))
+
+supply_chain_yfraud <- supply_chain_model
+#supply_chain_yfraud
+
+#str(supply_chain_model)
+#View(supply_chain_model)
+
+plt_supply_chain_model <- supply_chain_model %>% count(y_fraud) %>% 
+  plot_ly(labels = ~ factor(y_fraud), values = ~ n, type = "pie", marker = list(colors = c("#F5DEB3", "#CD0000"))) %>% 
+  layout(title = "Fraudulent vs. Valid Transaction Ratio", showlegend = T, margin = list(l = 0, r = 0, b = 0, t = 50, pad = 0), legend = list(orientation = "h"))
+
+plt_supply_chain_model
+
+#supply_chain_model
+supply_chain_model <- supply_chain[c("Type", "Sales.per.customer")]
+
+#head(supply_chain_model)
+
+supply_chain_model[c('Benefit.per.order', 'Sales.per.customer', 'Sales', 'Order.Item.Total','y_fraud')] <- supply_chain_yfraud[c('Benefit.per.order', 'Sales.per.customer', 'Sales', 'Order.Item.Total','y_fraud')]
+str(supply_chain_model)
+
+for (x in names(supply_chain_model)) {
+  
+  print(paste(x ,':', length(unique(supply_chain_model[[x]]))))
+}
+
+table(supply_chain_model$Type)
+
+supply_chain_model$Type <- recode(supply_chain_model$Type, "DEBIT"=7, "TRANSFER"=5, "PAYMENT"=4, "CASH"=2)
+
+#View(supply_chain_model)
+
+```
+
+
+
+## PREDICTION - FRAUD DETECTION
+
+```{r}
+
+library(tensorflow)
+library(keras)
+
+# Set the seed for reproducibility
+set.seed(42)
+
+# Split the data into training and testing sets
+split <- createDataPartition(supply_chain_model$y_fraud, p = 0.8, list = FALSE)
+train_data <- supply_chain_model[split, ]
+test_data <- supply_chain_model[-split, ]
+
+# Fit a logistic regression model on the training data
+model <- glm(y_fraud ~ ., data = train_data, family = "binomial")
+# Convert y_fraud to factor with levels "0" and "1"
+test_data$y_fraud <- factor(test_data$y_fraud, levels = c("0", "1"))
+# Make predictions on the testing data
+pred <- predict(model, newdata = test_data, type = "response")
+#pred_class <- ifelse(pred > 0.5, 1, 0)
+pred_class <- factor(ifelse(pred > 0.5, "1", "0"), levels = c("0", "1"))
+# Print the accuracy score
+accuracy <- confusionMatrix(pred_class, test_data$y_fraud)$overall['Accuracy']
+print(paste0("Accuracy: ", round(accuracy, 3)))
+# Print the confusion matrix
+cm <- confusionMatrix(pred_class, test_data$y_fraud)
+print(cm$table)
+
+library(MASS)
+
+# Fit a LDA model on the training data
+model <- lda(y_fraud ~ ., data = train_data)
+
+# Make predictions on the testing data
+pred <- predict(model, newdata = test_data)
+
+# Print the accuracy score
+accuracy <- confusionMatrix(pred$class, test_data$y_fraud)$overall['Accuracy']
+print(paste0("Accuracy: ", round(accuracy, 3)))
+
+# Print the confusion matrix
+cm <- confusionMatrix(pred$class, test_data$y_fraud)
+print(cm$table)
+
+```
+
+
+
+
+
+```{r}
+
+
+```
+
+
+
+
+
+```{r}
+
+
+```
+
+
+
+
+
+
+
